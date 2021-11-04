@@ -34,7 +34,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\NBUCareers.Data\NBUCareers.Data.csproj" />
-    <ProjectReference Include="..\NBUCareers.Infrastructure\NBUCareers.Infrastructure.csproj" />
+    <ProjectReference Include="..\NBUCareers.Infrastucture\NBUCareers.Infrastucture.csproj" />
     <ProjectReference Include="..\NBUCareers.Services\NBUCareers.Services.csproj" />
   </ItemGroup>
 

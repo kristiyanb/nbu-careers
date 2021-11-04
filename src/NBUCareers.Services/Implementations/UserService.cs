@@ -30,7 +30,7 @@ namespace NBUCareers.Services.Implementations
         }
 
         public async Task<IdentityResult> CreateAsync(RegisterRequestModel model)
-            => await this.userManager.CreateAsync(this.mapper.Map<User>(model));
+            => await this.userManager.CreateAsync(this.mapper.Map<User>(model), model.Password);
 
         public async Task<LoginResponseModel> LoginAsync(LoginRequestModel model)
         {
@@ -39,10 +39,15 @@ namespace NBUCareers.Services.Implementations
             var user = await this.userManager.FindByNameAsync(model.UserName);
             if (user == null)
             {
-                response.Succeeded = false;
-                response.ErrorMessage = "User name not recognized.";
+                user = await this.userManager.FindByEmailAsync(model.UserName);
 
-                return response;
+                if (user == null)
+                {
+                    response.Succeeded = false;
+                    response.ErrorMessage = "User name not recognized.";
+
+                    return response;
+                }
             }
 
             var passwordValid = await this.userManager.CheckPasswordAsync(user, model.Password);
@@ -54,7 +59,7 @@ namespace NBUCareers.Services.Implementations
                 return response;
             }
 
-            response.Token = this.GenerateJwtToken(user.Id, user.UserName, this.configuration["Secret"]);
+            response.Token = this.GenerateJwtToken(user.Id, user.UserName, this.configuration["AppSecret"]);
 
             return response;
         }

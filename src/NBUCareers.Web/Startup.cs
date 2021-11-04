@@ -6,6 +6,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NBUCareers.Infrastructure.Extensions;
 using NBUCareers.Infrastructure.Mapping;
+using NBUCareers.Services.Contracts;
+using NBUCareers.Services.Implementations;
 
 namespace NBUCareers.Web
 {
@@ -23,6 +25,8 @@ namespace NBUCareers.Web
                 .AddIdentity()
                 .AddJwtAuthentication(this.Configuration)
                 .AddControllersWithViews();
+
+            services.AddTransient<IUserService, UserService>();
 
             services.AddControllersWithViews();
             services.AddSpaStaticFiles(configuration =>
@@ -66,7 +70,7 @@ namespace NBUCareers.Web
 
                 if (env.IsDevelopment())
                 {
-                    spa.UseAngularCliServer(npmScript: "start");
+                    spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
                 }
             });
         }

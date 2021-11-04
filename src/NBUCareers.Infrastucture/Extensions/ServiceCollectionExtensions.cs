@@ -22,7 +22,15 @@ namespace NBUCareers.Infrastructure.Extensions
         public static IServiceCollection AddIdentity(this IServiceCollection services)
         {
             services
-                .AddIdentity<User, IdentityRole>()
+                .AddIdentity<User, IdentityRole>(options=>
+                {
+                    options.Password.RequireDigit = false;
+                    options.Password.RequiredLength = 6;
+                    options.Password.RequiredUniqueChars = 1;
+                    options.Password.RequireNonAlphanumeric = false;
+                    options.Password.RequireUppercase = false;
+                    options.Password.RequireLowercase = false;
+                })
                 .AddEntityFrameworkStores<AppDbContext>();
 
             return services;

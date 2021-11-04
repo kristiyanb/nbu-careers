@@ -3,7 +3,7 @@
 namespace NBUCareers.Web.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public abstract class ApiController : ControllerBase
     {
     }

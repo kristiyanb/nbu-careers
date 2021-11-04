@@ -12,6 +12,8 @@ namespace NBUCareers.Web.Controllers
         public IdentityController(IUserService userService) 
             => this.userService = userService;
 
+        [HttpPost]
+        [Route(nameof(Register))]
         public async Task<IActionResult> Register(RegisterRequestModel model)
         {
             var result = await this.userService.CreateAsync(model);
@@ -24,6 +26,8 @@ namespace NBUCareers.Web.Controllers
             return Ok();
         }
 
+        [HttpPost]
+        [Route(nameof(Login))]
         public async Task<ActionResult<LoginResponseModel>> Login(LoginRequestModel model)
         {
             var response = await this.userService.LoginAsync(model);
@@ -33,7 +37,7 @@ namespace NBUCareers.Web.Controllers
                 return Unauthorized(response.ErrorMessage);
             }
 
-            return Ok();
+            return Ok(response.Token);
         }
     }
 }

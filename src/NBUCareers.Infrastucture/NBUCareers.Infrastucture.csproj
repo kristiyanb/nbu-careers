@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\NBUCareers.Data\NBUCareers.Data.csproj" />
+    <ProjectReference Include="..\NBUCareers.Models\NBUCareers.Models.csproj" />
   </ItemGroup>
 
 </Project>

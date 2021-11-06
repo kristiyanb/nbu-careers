@@ -1,9 +1,10 @@
-﻿using AutoMapper;
-using System;
-using System.Linq;
-
-namespace NBUCareers.Infrastructure.Mapping
+﻿namespace NBUCareers.Infrastructure.Mapping
 {
+    using System;
+    using System.Linq;
+
+    using AutoMapper;
+
     public class AutoMapperProfile : Profile
     {
         public AutoMapperProfile()

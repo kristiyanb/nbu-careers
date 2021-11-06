@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace NBUCareers.Models.Base
+﻿namespace NBUCareers.Models.Base
 {
+    using System;
+
     public abstract class Entity
     {
         public int Id { get; set; }

@@ -1,7 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace NBUCareers.Services.Models.Identity
+﻿namespace NBUCareers.Services.Models.Identity
 {
+    using System.ComponentModel.DataAnnotations;
+
     public class LoginRequestModel
     {
         [Required]

@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Identity;
-
-namespace NBUCareers.Models
+﻿namespace NBUCareers.Models
 {
+    using Microsoft.AspNetCore.Identity;
+
     public class User : IdentityUser
     {
     }

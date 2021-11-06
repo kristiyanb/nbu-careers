@@ -1,9 +1,10 @@
-﻿using NBUCareers.Models;
-using NBUCareers.Infrastructure.Mapping;
-using System.ComponentModel.DataAnnotations;
-
-namespace NBUCareers.Services.Models.Identity
+﻿namespace NBUCareers.Services.Models.Identity
 {
+    using System.ComponentModel.DataAnnotations;
+
+    using NBUCareers.Infrastructure.Mapping;
+    using NBUCareers.Models;
+
     public class RegisterRequestModel : IMapTo<User>
     {
         [Required]

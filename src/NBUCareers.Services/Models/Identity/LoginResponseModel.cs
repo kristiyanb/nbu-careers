@@ -1,11 +1,9 @@
 ﻿namespace NBUCareers.Services.Models.Identity
 {
-    public class LoginResponseModel
+    using Base;
+
+    public class LoginResponseModel : ResponseModel
     {
         public string Token { get; set; }
-
-        public bool Succeeded { get; set; } = true;
-
-        public string ErrorMessage { get; set; }
     }
 }

@@ -1,43 +1,45 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using NBUCareers.Services.Contracts;
-using NBUCareers.Services.Models.Identity;
-using System.Threading.Tasks;
-
-namespace NBUCareers.Web.Controllers
+﻿namespace NBUCareers.Web.Controllers
 {
+    using System.Threading.Tasks;
+
+    using Microsoft.AspNetCore.Mvc;
+
+    using NBUCareers.Services.Contracts;
+    using NBUCareers.Services.Models.Identity;
+
     public class IdentityController : ApiController
     {
-        private readonly IUserService userService;
+        private readonly IIdentityService identityService;
 
-        public IdentityController(IUserService userService) 
-            => this.userService = userService;
+        public IdentityController(IIdentityService userService)
+            => this.identityService = userService;
 
         [HttpPost]
         [Route(nameof(Register))]
         public async Task<IActionResult> Register(RegisterRequestModel model)
         {
-            var result = await this.userService.CreateAsync(model);
+            var result = await this.identityService.RegisterAsync(model);
 
             if (!result.Succeeded)
             {
-                return BadRequest(result.Errors);
+                return this.BadRequest(result.Errors);
             }
 
-            return Ok();
+            return this.Ok();
         }
 
         [HttpPost]
         [Route(nameof(Login))]
         public async Task<ActionResult<LoginResponseModel>> Login(LoginRequestModel model)
         {
-            var response = await this.userService.LoginAsync(model);
+            var response = await this.identityService.LoginAsync(model);
 
             if (!response.Succeeded)
             {
-                return Unauthorized(response.ErrorMessage);
+                return this.Unauthorized(response.ErrorMessage);
             }
 
-            return Ok(response.Token);
+            return this.Ok(response.Token);
         }
     }
 }

@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\NBUCareers.Data\NBUCareers.Data.csproj" />
     <ProjectReference Include="..\NBUCareers.Infrastucture\NBUCareers.Infrastucture.csproj" />
     <ProjectReference Include="..\NBUCareers.Models\NBUCareers.Models.csproj" />
   </ItemGroup>

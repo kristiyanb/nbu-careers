@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-namespace NBUCareers.Web.Controllers
+﻿namespace NBUCareers.Web.Controllers
 {
+    using Microsoft.AspNetCore.Mvc;
+
     [ApiController]
     [Route("api/[controller]")]
     public abstract class ApiController : ControllerBase

@@ -1,7 +1,7 @@
-﻿using NBUCareers.Models.Base;
-
-namespace NBUCareers.Models
+﻿namespace NBUCareers.Models
 {
+    using Base;
+
     public class Application : Entity
     {
         public string CvUrl { get; set; }

@@ -1,8 +1,9 @@
-﻿using NBUCareers.Models.Base;
-using System.Collections.Generic;
-
-namespace NBUCareers.Models
+﻿namespace NBUCareers.Models
 {
+    using System.Collections.Generic;
+
+    using Base;
+
     public class Company : Entity
     {
         public Company()

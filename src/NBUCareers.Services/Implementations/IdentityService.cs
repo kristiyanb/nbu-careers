@@ -1,25 +1,28 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.Tokens;
-using NBUCareers.Models;
-using NBUCareers.Services.Contracts;
-using NBUCareers.Services.Models.Identity;
-using System;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace NBUCareers.Services.Implementations
+﻿namespace NBUCareers.Services.Implementations
 {
-    public class UserService : IUserService
+    using System;
+    using System.IdentityModel.Tokens.Jwt;
+    using System.Security.Claims;
+    using System.Text;
+    using System.Threading.Tasks;
+
+    using AutoMapper;
+
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.IdentityModel.Tokens;
+
+    using NBUCareers.Models;
+    using NBUCareers.Services.Contracts;
+    using NBUCareers.Services.Models.Identity;
+
+    public class IdentityService : IIdentityService
     {
         private readonly UserManager<User> userManager;
         private readonly IMapper mapper;
         private readonly IConfiguration configuration;
 
-        public UserService(
+        public IdentityService(
             UserManager<User> userManager,
             IMapper mapper,
             IConfiguration configuration)
@@ -29,7 +32,7 @@ namespace NBUCareers.Services.Implementations
             this.configuration = configuration;
         }
 
-        public async Task<IdentityResult> CreateAsync(RegisterRequestModel model)
+        public async Task<IdentityResult> RegisterAsync(RegisterRequestModel model)
             => await this.userManager.CreateAsync(this.mapper.Map<User>(model), model.Password);
 
         public async Task<LoginResponseModel> LoginAsync(LoginRequestModel model)

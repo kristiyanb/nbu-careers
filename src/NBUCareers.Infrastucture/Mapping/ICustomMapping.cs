@@ -1,7 +1,7 @@
-﻿using AutoMapper;
-
-namespace NBUCareers.Infrastructure.Mapping
+﻿namespace NBUCareers.Infrastructure.Mapping
 {
+    using AutoMapper;
+
     public interface ICustomMapping
     {
         void CreateMapping(IProfileExpression configuration);

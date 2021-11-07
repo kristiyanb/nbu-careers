@@ -3,11 +3,13 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
     using NBUCareers.Services.Contracts;
     using NBUCareers.Services.Models.Companies;
 
+    [Authorize]
     public class CompaniesController : ApiController
     {
         private readonly ICompanyService companyService;

@@ -3,11 +3,13 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
     using NBUCareers.Services.Contracts;
     using NBUCareers.Services.Models.Applications;
 
+    [Authorize]
     public class ApplicationsController : ApiController
     {
         private readonly IApplicationService applicationService;

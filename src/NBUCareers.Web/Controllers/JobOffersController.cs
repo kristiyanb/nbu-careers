@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
     using NBUCareers.Services.Contracts;
@@ -18,10 +19,12 @@
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<JobOfferResponseModel>> Create(JobOfferRequestModel model)
             => await this.jobOfferService.Create(model);
 
         [HttpDelete]
+        [Authorize]
         [Route("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
@@ -36,6 +39,7 @@
         }
 
         [HttpPut]
+        [Authorize]
         public async Task<IActionResult> Edit(JobOfferRequestModel model)
         {
             var result = await this.jobOfferService.Edit(model);

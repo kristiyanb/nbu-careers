@@ -9,6 +9,8 @@
 
         public string CvUrl { get; set; }
 
+        public byte[] CvData { get; set; }
+
         public string CoverLetter { get; set; }
 
         public string UserId { get; set; }

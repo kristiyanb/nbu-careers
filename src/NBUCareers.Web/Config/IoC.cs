@@ -5,6 +5,7 @@
     using Microsoft.AspNetCore.Authentication.JwtBearer;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.Azure;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.IdentityModel.Tokens;
@@ -28,6 +29,8 @@
             AddInfrastructureServices(services);
             AddDataServices(services);
             AddSwagger(services);
+            // TODO: 
+            //AddBlobService(services, configuration);
         }
 
         private static void AddAutoMapper(IServiceCollection services)
@@ -71,25 +74,29 @@
                     };
                 });
 
+        private static void AddSwagger(IServiceCollection services)
+            => services.AddSwaggerGen(c =>
+                {
+                    c.SwaggerDoc("v1", new OpenApiInfo { Title = "NBU Careers API", Version = "v1" });
+                });
+
+        private static void AddBlobService(IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddAzureClients(builder =>
+            {
+                builder.AddBlobServiceClient(configuration.GetConnectionString("BlobStorage"));
+            });
+        }
+
+        private static void AddInfrastructureServices(IServiceCollection services)
+            => services.AddTransient<IUserService, UserService>();
+
         private static void AddDataServices(IServiceCollection services)
         {
             services.AddTransient<IApplicationService, ApplicationService>();
             services.AddTransient<ICompanyService, CompanyService>();
             services.AddTransient<IIdentityService, IdentityService>();
             services.AddTransient<IJobOfferService, JobOfferService>();
-        }
-
-        private static void AddInfrastructureServices(IServiceCollection services)
-        {
-            services.AddTransient<IUserService, UserService>();
-        }
-
-        private static void AddSwagger(IServiceCollection services)
-        {
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "NBU Careers API", Version = "v1" });
-            });
         }
     }
 }
